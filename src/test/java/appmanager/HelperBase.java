@@ -11,7 +11,7 @@ public class HelperBase {
     protected JavascriptExecutor js;
     private boolean acceptNextAlert = true;
 
-    protected void sendKeys(String login, String locator) {
+    public void sendKeys(String login, String locator) {
         driver.findElement(By.name(locator)).click();
         driver.findElement(By.name(locator)).clear();
         driver.findElement(By.name(locator)).sendKeys(login);
