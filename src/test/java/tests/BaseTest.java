@@ -18,7 +18,7 @@ public class BaseTest extends HelperBase {
     public void setUp() throws Exception {
         driver = new ChromeDriver();
         baseUrl = "http://localhost/litecart/admin/login.php?redirect_url=%2Flitecart%2Fadmin%2F";
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(1));
         js = (JavascriptExecutor) driver;
         driver.get(baseUrl);
         sendKeys("admin", "username");

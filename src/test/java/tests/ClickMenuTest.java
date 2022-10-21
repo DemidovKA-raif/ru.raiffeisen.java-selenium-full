@@ -1,39 +1,39 @@
 package tests;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 
-import java.util.List;
-
 public class ClickMenuTest extends BaseTest {
 
-@Test
+    @Test
     public void testFirst() throws InterruptedException {
-    for (int i = 1; i < 17; i++) {
-    WebElement elementMenuHead = driver.findElement(By.xpath("//li[@id='app-'][" + i + "]"));
-        elementMenuHead.click();
-        Thread.sleep(500);
+        for (int i = 1; i < 17; i++) {
+            WebElement elementMenuHead = driver.findElement(By.xpath("//li[@id='app-'][" + i + "]"));
+            elementMenuHead.click();
+            for (int s = 1; s < 10; s++) {
+                boolean elementPresent = isElementPresent(By.xpath(".//*[contains(@id, 'doc')][" + s + "]"));
+                if (!elementPresent) {
+                    break;
+                }
+                WebElement li = driver.findElement(By.xpath(".//*[contains(@id, 'doc')][" + s + "]"));
+                li.click();
+            }
         }
-//    driver.findElements(By.xpath("//*[@class='docs']")).iterator().next().click();
-}
+    }
 
 
-//    @Test
-//    public void testFirst() throws InterruptedException {
-//
-//        WebElement elementMenuHead = driver.findElement(By.id("box-apps-menu-wrapper"));
-//        elementMenuHead.click();
-//        Thread.sleep(500);
-//
-//
-//
-//        elementMenuHead.findElement(By.tagName("li")).click();
-//        Thread.sleep(500);
-//    }
-//
-//   public boolean areElementsPresent(By locator) {
-//        return driver.findElements(locator).size() > 0;
-//    }
+    boolean areElementsPresent(By locator) {
+        return driver.findElements(locator).size() > 0;
+    }
+
+    boolean isElementPresent(By locator) {
+        try {
+            driver.findElement(locator);
+            return true;
+        } catch (NoSuchElementException ex) {
+            return false;
+        }
+    }
 }
