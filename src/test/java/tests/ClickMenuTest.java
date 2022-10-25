@@ -5,6 +5,8 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 
+import static org.testng.Assert.assertEquals;
+
 public class ClickMenuTest extends BaseTest {
 
     @Test
@@ -17,8 +19,10 @@ public class ClickMenuTest extends BaseTest {
                 if (!elementPresent) {
                     break;
                 }
+                int hStyle = driver.findElements(By.xpath("//h1")).size();
                 WebElement li = driver.findElement(By.xpath(".//*[contains(@id, 'doc')][" + s + "]"));
                 li.click();
+                assertEquals(hStyle, 1);
             }
         }
     }

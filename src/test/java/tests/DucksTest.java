@@ -1,7 +1,6 @@
 package tests;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -39,7 +38,6 @@ public class DucksTest {
             assertEquals(sizeDuckStickers, 1);
         }
     }
-
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() throws Exception {
