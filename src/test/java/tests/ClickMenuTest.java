@@ -14,15 +14,17 @@ public class ClickMenuTest extends BaseTest {
         for (int i = 1; i < 17; i++) {
             WebElement elementMenuHead = driver.findElement(By.xpath("//li[@id='app-'][" + i + "]"));
             elementMenuHead.click();
+            int hStyle = driver.findElements(By.xpath("//h1")).size();
+            assertEquals(hStyle, 1);
             for (int s = 1; s < 10; s++) {
                 boolean elementPresent = isElementPresent(By.xpath(".//*[contains(@id, 'doc')][" + s + "]"));
                 if (!elementPresent) {
                     break;
                 }
-                int hStyle = driver.findElements(By.xpath("//h1")).size();
                 WebElement li = driver.findElement(By.xpath(".//*[contains(@id, 'doc')][" + s + "]"));
                 li.click();
-                assertEquals(hStyle, 1);
+                int hStyleSubtitle = driver.findElements(By.xpath("//h1")).size();
+                assertEquals(hStyleSubtitle, 1);
             }
         }
     }
