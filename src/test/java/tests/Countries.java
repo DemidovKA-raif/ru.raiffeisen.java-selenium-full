@@ -66,6 +66,36 @@ public class Countries extends HelperBase {
         }
     }
 
+
+    @Test
+    public void sortGeoZoneTest() {
+        WebElement goHome = driver.findElement(By.xpath("//*/text()[normalize-space(.)='Geo Zones']/parent::*"));
+        goHome.click();
+        iteratorForZone("Canada");
+        iteratorForZone("United States of America");
+    }
+
+    private void iteratorForZone(String country) {
+        driver.findElement(By.xpath("//a[contains(text(),'" + country + "')]")).click();
+        WebElement table = driver.findElement(By.id("table-zones"));
+        int zoneList = table.findElements(By.xpath(".//*[contains(@name, 'zone_code')]")).size();
+        for (int s = 2; s < zoneList; s++) {
+            WebElement getID = driver.findElement(By.xpath("//table[2]/tbody/tr[" + s + "]/td[1]"));
+            int valueID = Integer.parseInt(getID.getText());
+            WebElement text = driver.findElement(By.xpath(".//*[contains(@name, 'zones[" + valueID + "][zone_code]')] "));
+            String attribute = text.getAttribute("value");
+            String textAttribute = driver.findElement(By.xpath(".//*[contains(@value, '" + attribute + "')]")).getText();
+
+            ArrayList<String> list = new ArrayList<>();
+            list.add(textAttribute);
+            ArrayList<String> listAfterForZones = list; //создаем дубликат списка
+            Collections.sort(listAfterForZones);
+
+            list.equals(listAfterForZones);
+        }
+        driver.findElement(By.xpath("//button[@name='cancel']")).click();
+    }
+
     @AfterMethod(alwaysRun = true)
     public void tearDown() throws Exception {
         driver.quit();
