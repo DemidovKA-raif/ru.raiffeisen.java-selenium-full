@@ -39,6 +39,42 @@ public class DucksTest {
         }
     }
 
+
+    @Test
+    public void testDuckName() {
+        WebElement campaigns = driver.findElement(By.xpath("//*[@id='box-campaigns']//*[contains(@class, 'name')]"));
+        String price = driver.findElement(By.xpath("//*[@id='box-campaigns']//*[contains(@class, 'price-wrapper')]")).getText();
+        String normalPrice = driver.findElement(By.xpath("//*[@id='box-campaigns']//*[contains(@class, 'regular-price')]")).getText();
+        String salePrice = driver.findElement(By.xpath("//*[@id='box-campaigns']//*[contains(@class, 'campaign-price')]")).getText();
+
+        String attributeForTable = campaigns.getAttribute("innerText");
+
+        int s = Integer.parseInt(removeNumeric(normalPrice));
+        int s1 = Integer.parseInt(removeNumeric(salePrice));
+
+        equals(s > s1);
+        campaigns.click();
+
+//        String color = normalPrice.getCssValue("color");
+//        System.out.println(color);
+        String attributeForPage = driver.findElement(By.xpath("//h1[@class='title']")).getAttribute("textContent");
+        String priceForPage = driver.findElement(By.xpath("//div[@itemprop='offers']")).getText();
+        String normalPricePage = driver.findElement(By.xpath("//s[@class='regular-price']")).getText();
+        String salePricePage = driver.findElement(By.xpath("//strong[@class='campaign-price']")).getText();
+
+        int q = Integer.parseInt(removeNumeric(normalPricePage));
+        int q1 = Integer.parseInt(removeNumeric(salePricePage));
+
+        equals(q > q1);
+        assertEquals(attributeForTable, attributeForPage);
+        assertEquals(price, priceForPage);
+    }
+
+    public static String removeNumeric(String str) {
+        return str.replaceAll("[^\\d]", "");
+    }
+
+
     @AfterMethod(alwaysRun = true)
     public void tearDown() throws Exception {
         driver.quit();
