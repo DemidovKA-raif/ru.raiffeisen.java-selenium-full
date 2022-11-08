@@ -79,10 +79,9 @@ public class CountriesTest extends HelperBase {
             for (int s = 2; s < zoneList; s++) {
                 WebElement getID = driver.findElement(By.xpath("//table[2]/tbody/tr[" + s + "]/td[1]"));
                 int valueID = Integer.parseInt(getID.getText());
-                WebElement text = driver.findElement(By.xpath(".//*[contains(@name, 'zones[" + valueID + "][zone_code]')] "));
-                String attribute = text.getAttribute("value");
-                String textAttribute = driver.findElement(By.xpath(".//*[contains(@value, '" + attribute + "')]")).getText();
-                list.add(textAttribute);
+                WebElement text = driver.findElement(By.xpath(".//*[contains(@name, 'zones[" + valueID + "][zone_code]')]/option[@selected] "));
+                String attribute = text.getText();
+                list.add(attribute);
             }
 
             ArrayList<String> listAfterForZones = list; //создаем дубликат списка
