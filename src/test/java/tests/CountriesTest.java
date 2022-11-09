@@ -9,10 +9,13 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.time.Duration;
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Arrays;
 
+import java.time.Duration;
+import java.util.*;
+import java.util.stream.Stream;
+
+import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.fail;
 
 public class CountriesTest extends HelperBase {
@@ -51,15 +54,21 @@ public class CountriesTest extends HelperBase {
                     listZones.add(fotZonesText);
                 }
                 driver.findElement(By.xpath("//button[@name='cancel']")).click();
+
+                ArrayList<String> listAfterForZones = new ArrayList<>(listZones); //создаем дубликат списка
+                Collections.sort(listAfterForZones); //сортируем дубликат полученного списка
+
+//                System.out.println(listAfterForZones);
+//                System.out.println(listZones);
+
+                assertEquals(listAfterForZones, listZones);
+                listZones.clear();
+                listAfterForZones.clear();
             }
         }
-        ArrayList<String> listAfterForZones = listZones; //создаем дубликат списка
-        Collections.sort(listAfterForZones); //сортируем дубликат полученного списка
-        listZones.equals(listAfterForZones); //проверяем равенство списков
-
-        ArrayList<String> listAfter = listCountries;
+        ArrayList<String> listAfter = new ArrayList<>(listCountries);
         Collections.sort(listAfter);
-        listCountries.equals(listAfter);
+        assertEquals(listCountries, listAfter);
     }
 
 
@@ -76,7 +85,7 @@ public class CountriesTest extends HelperBase {
             int zoneList = table.findElements(By.xpath(".//*[contains(@name, 'zone_code')]")).size();
             ArrayList<String> list = new ArrayList<>();
 
-            for (int s = 2; s < zoneList+2; s++) {
+            for (int s = 2; s < zoneList + 2; s++) {
                 WebElement getID = driver.findElement(By.xpath("//table[2]/tbody/tr[" + s + "]/td[1]"));
                 int valueID = Integer.parseInt(getID.getText());
                 WebElement text = driver.findElement(By.xpath(".//*[contains(@name, 'zones[" + valueID + "][zone_code]')]/option[@selected] "));
