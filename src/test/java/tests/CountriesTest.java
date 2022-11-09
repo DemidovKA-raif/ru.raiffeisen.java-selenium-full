@@ -76,7 +76,7 @@ public class CountriesTest extends HelperBase {
             int zoneList = table.findElements(By.xpath(".//*[contains(@name, 'zone_code')]")).size();
             ArrayList<String> list = new ArrayList<>();
 
-            for (int s = 2; s < zoneList; s++) {
+            for (int s = 2; s < zoneList+2; s++) {
                 WebElement getID = driver.findElement(By.xpath("//table[2]/tbody/tr[" + s + "]/td[1]"));
                 int valueID = Integer.parseInt(getID.getText());
                 WebElement text = driver.findElement(By.xpath(".//*[contains(@name, 'zones[" + valueID + "][zone_code]')]/option[@selected] "));
