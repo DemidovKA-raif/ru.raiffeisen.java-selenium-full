@@ -49,8 +49,8 @@ public class DucksTest {
         String salePrice = campaignPrice.getText();
         String attributeForTable = campaigns.getAttribute("innerText");
 
-        int s = Integer.parseInt(removeNumeric(normPrice));
-        int s1 = Integer.parseInt(removeNumeric(salePrice));
+        double s = Double.parseDouble(removeNumeric(normPrice));
+        double s1 = Double.parseDouble(removeNumeric(salePrice));
 
         String colorNormalPriceStartPage = regularPrice.getCssValue("color");
         parserFirst(colorNormalPriceStartPage); //отправляем полученный цвет в странном формате на разбивку и очистку
@@ -59,7 +59,8 @@ public class DucksTest {
         parserSecond(colorSalePriceStartPage);//отправляем полученный цвет в странном формате на разбивку и очистку
 
         String styleTest1 = campaignPrice.getCssValue("font-weight");
-        assertTrue(styleTest1.contains("700"));//хардкод, но не понимаю, зачем это вывносить куда-либо
+        int styleTest1Int = Integer.parseInt(styleTest1);
+        assertTrue(styleTest1Int >= 700);//хардкод, но не понимаю, зачем это вывносить куда-либо
 
         String styleTest = regularPrice.getCssValue("text-decoration");
         assertTrue(styleTest.contains("line-through"));//хардкод, но не понимаю, зачем это вывносить куда-либо
@@ -81,13 +82,14 @@ public class DucksTest {
         parserSecond(salePricePageCssValue);
 
         String styleTestPage1 = salePricePage.getCssValue("font-weight");
-        assertTrue(styleTestPage1.contains("700"));//хардкод, но не понимаю, зачем это выносить куда-либо
+        int styleTestPageInt = Integer.parseInt(styleTestPage1);
+        assertTrue(styleTestPageInt >= 700);//хардкод, но не понимаю, зачем это выносить куда-либо
 
         String styleTestPage2 = normalPricePage.getCssValue("text-decoration");
         assertTrue(styleTestPage2.contains("line-through"));//хардкод, но не понимаю, зачем это выносить куда-либо
 
-        int q = Integer.parseInt(removeNumeric(normalPricePageText));
-        int q1 = Integer.parseInt(removeNumeric(salePricePageText));
+        double q = Double.parseDouble(removeNumeric(normalPricePageText));
+        double q1 = Double.parseDouble(removeNumeric(salePricePageText));
 
         equals(q > q1);
         assertEquals(attributeForTable, attributeForPage);
