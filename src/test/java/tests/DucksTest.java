@@ -49,6 +49,12 @@ public class DucksTest {
         String salePrice = campaignPrice.getText();
         String attributeForTable = campaigns.getAttribute("innerText");
 
+        String regularPriceCssValue = regularPrice.getCssValue("font-size");
+        String campaignPriceCssValue = campaignPrice.getCssValue("font-size");
+        double removeNumeric4 = Double.parseDouble(removeNumeric(regularPriceCssValue));
+        double removeNumeric3 = Double.parseDouble(removeNumeric(campaignPriceCssValue));
+        equals(removeNumeric4 >removeNumeric3);
+
         double s = Double.parseDouble(removeNumeric(normPrice));
         double s1 = Double.parseDouble(removeNumeric(salePrice));
 
@@ -88,6 +94,14 @@ public class DucksTest {
         String styleTestPage2 = normalPricePage.getCssValue("text-decoration");
         assertTrue(styleTestPage2.contains("line-through"));//хардкод, но не понимаю, зачем это выносить куда-либо
 
+        String sizeTitleNormalPricePage = normalPricePage.getCssValue("font-size");
+        String sizeTitleSalePricePage = salePricePage.getCssValue("font-size");
+
+        double removeNumeric1 = Double.parseDouble(removeNumeric(sizeTitleNormalPricePage));
+        double removeNumeric2 = Double.parseDouble(removeNumeric(sizeTitleSalePricePage));
+        equals(removeNumeric2 > removeNumeric1);
+
+
         double q = Double.parseDouble(removeNumeric(normalPricePageText));
         double q1 = Double.parseDouble(removeNumeric(salePricePageText));
 
@@ -118,7 +132,7 @@ public class DucksTest {
     }
 
     public static String removeNumeric(String str) {
-        return str.replaceAll("[^\\d]", "");
+        return str.replaceAll("[^\\d.]", "");
     }
 
 
