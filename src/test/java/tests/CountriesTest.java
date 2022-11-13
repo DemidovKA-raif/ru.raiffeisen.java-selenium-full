@@ -1,43 +1,22 @@
 package tests;
 
-import appmanager.HelperBase;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.util.Arrays;
-
-import java.time.Duration;
-import java.util.*;
-import java.util.stream.Stream;
+import java.util.ArrayList;
+import java.util.Collections;
 
 import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.fail;
 
-public class CountriesTest extends HelperBase {
-
-
-    @BeforeMethod(alwaysRun = true)
-    public void setUp() throws Exception {
-        driver = new ChromeDriver();
-        baseUrl = "http://localhost/litecart/admin/?app=countries&doc=countries";
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(1));
-        js = (JavascriptExecutor) driver;
-        driver.get(baseUrl);
-        sendKeys("admin", "username");
-        sendKeys("admin", "password");
-        driver.findElement(By.name("login")).click();
-    }
+public class CountriesTest extends BaseTestAdmin {
 
 
     @Test
     public void countriesTest() {
         ArrayList<String> listCountries = new ArrayList<>();
         ArrayList<String> listZones = new ArrayList<>();
+        click(By.xpath("//*/text()[normalize-space(.)='Countries']/parent::*"));
         int sizeTable = Integer.parseInt(driver.findElement(By.name("countries_form")).getAttribute("length"));
         for (int i = 2; i < sizeTable - 1; i++) {
             WebElement nameCountries = driver.findElement(By.xpath("//tr[" + i + "]/td[5]/a"));
@@ -53,7 +32,7 @@ public class CountriesTest extends HelperBase {
                     String fotZonesText = nameCountriesFotZones.getText();
                     listZones.add(fotZonesText);
                 }
-                driver.findElement(By.xpath("//button[@name='cancel']")).click();
+                click(By.xpath("//button[@name='cancel']"));
 
                 ArrayList<String> listAfterForZones = new ArrayList<>(listZones); //создаем дубликат списка
                 Collections.sort(listAfterForZones); //сортируем дубликат полученного списка
@@ -80,7 +59,7 @@ public class CountriesTest extends HelperBase {
         for (int i = 1; i <= maxSizeCountries; i++) {
             String country = driver.findElement(By.xpath("//tr[@class='row'][" + i + "]/td/a")).getText();
             System.out.println(country);
-            driver.findElement(By.xpath("//a[contains(text(),'" + country + "')]")).click();
+            click(By.xpath("//a[contains(text(),'" + country + "')]"));
             WebElement table = driver.findElement(By.id("table-zones"));
             int zoneList = table.findElements(By.xpath(".//*[contains(@name, 'zone_code')]")).size();
             ArrayList<String> list = new ArrayList<>();
@@ -96,20 +75,10 @@ public class CountriesTest extends HelperBase {
             ArrayList<String> listAfterForZones = list; //создаем дубликат списка
             Collections.sort(listAfterForZones);
             list.equals(listAfterForZones);
-            driver.findElement(By.xpath("//button[@name='cancel']")).click();
+            click(By.xpath("//button[@name='cancel']"));
             System.out.println(listAfterForZones);
             System.out.println("__________");
             System.out.println(list);
-        }
-    }
-
-
-    @AfterMethod(alwaysRun = true)
-    public void tearDown() throws Exception {
-        driver.quit();
-        String verificationErrorString = verificationErrors.toString();
-        if (!"".equals(verificationErrorString)) {
-            fail(verificationErrorString);
         }
     }
 }

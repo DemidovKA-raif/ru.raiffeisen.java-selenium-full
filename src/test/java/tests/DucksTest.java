@@ -1,31 +1,25 @@
 package tests;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-import java.time.Duration;
 
 import static org.testng.Assert.*;
 
-public class DucksTest {
-    protected WebDriver driver;
-    protected String baseUrl;
-    protected StringBuffer verificationErrors = new StringBuffer();
+public class DucksTest extends BaseTestLitecart {
+//    protected WebDriver driver;
+//    protected String baseUrl;
+//    protected StringBuffer verificationErrors = new StringBuffer();
 
 
-    @BeforeMethod(alwaysRun = true)
-    public void setUp() throws Exception {
-        driver = new ChromeDriver();
-        baseUrl = "http://localhost/litecart/en/";
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
-        driver.get(baseUrl);
-        driver.findElement(By.name("login")).click();
-    }
+//    @BeforeMethod(alwaysRun = true)
+//    public void setUp() throws Exception {
+//        driver = new ChromeDriver();
+//        baseUrl = "http://localhost/litecart/en/";
+//        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
+//        driver.get(baseUrl);
+//        driver.findElement(By.name("login")).click();
+//    }
 
     @Test
     public void testDuckStickers() {
@@ -136,12 +130,12 @@ public class DucksTest {
     }
 
 
-    @AfterMethod(alwaysRun = true)
-    public void tearDown() throws Exception {
-        driver.quit();
-        String verificationErrorString = verificationErrors.toString();
-        if (!"".equals(verificationErrorString)) {
-            fail(verificationErrorString);
-        }
-    }
+//    @AfterMethod(alwaysRun = true)
+//    public void tearDown() throws Exception {
+//        driver.quit();
+//        String verificationErrorString = verificationErrors.toString();
+//        if (!"".equals(verificationErrorString)) {
+//            fail(verificationErrorString);
+//        }
+//    }
 }

@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
 
-public class ClickMenuTest extends BaseTest {
+public class ClickMenuTestAdmin extends BaseTestAdmin {
 
     @Test
     public void testFirst() throws InterruptedException {
