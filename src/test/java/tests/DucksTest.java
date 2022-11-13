@@ -7,19 +7,6 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.*;
 
 public class DucksTest extends BaseTestLitecart {
-//    protected WebDriver driver;
-//    protected String baseUrl;
-//    protected StringBuffer verificationErrors = new StringBuffer();
-
-
-//    @BeforeMethod(alwaysRun = true)
-//    public void setUp() throws Exception {
-//        driver = new ChromeDriver();
-//        baseUrl = "http://localhost/litecart/en/";
-//        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
-//        driver.get(baseUrl);
-//        driver.findElement(By.name("login")).click();
-//    }
 
     @Test
     public void testDuckStickers() {
