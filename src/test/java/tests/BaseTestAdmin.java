@@ -10,9 +10,11 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.io.File;
 import java.time.Duration;
 
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertTrue;
+import static org.testng.Assert.fail;
 
 public class BaseTestAdmin extends HelperBase {
 
@@ -39,7 +41,7 @@ public class BaseTestAdmin extends HelperBase {
 
     @Test
     public void fieldFormProduct() throws InterruptedException {
-        String  time = time();
+        String time = time();
         generalPage(time);
         informationPage();
         pricesPage();
@@ -104,5 +106,7 @@ public class BaseTestAdmin extends HelperBase {
         sendKeys("date_valid_to", "20.08.2023");
 
         WebElement newFile = driver.findElement(By.name("new_images[]"));
+        newFile.sendKeys(new File("src/test/resources/duck.jpeg").getAbsolutePath());
+
     }
 }
