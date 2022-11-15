@@ -4,6 +4,9 @@ import appmanager.HelperBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.remote.CapabilityType;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
@@ -15,9 +18,11 @@ public class BaseTestLitecart extends HelperBase {
 
     @BeforeMethod(alwaysRun = true)
     public void setUp() throws Exception {
-        driver = new ChromeDriver();
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability(CapabilityType.PAGE_LOAD_STRATEGY, "eager");
+        driver = new ChromeDriver(capabilities);
         baseUrl = "http://localhost/litecart/en/";
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
         driver.get(baseUrl);
         click(By.name("login"));
     }

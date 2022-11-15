@@ -115,14 +115,4 @@ public class DucksTest extends BaseTestLitecart {
     public static String removeNumeric(String str) {
         return str.replaceAll("[^\\d.]", "");
     }
-
-
-//    @AfterMethod(alwaysRun = true)
-//    public void tearDown() throws Exception {
-//        driver.quit();
-//        String verificationErrorString = verificationErrors.toString();
-//        if (!"".equals(verificationErrorString)) {
-//            fail(verificationErrorString);
-//        }
-//    }
 }
