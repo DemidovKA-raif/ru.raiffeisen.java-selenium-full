@@ -41,7 +41,7 @@ public class BaseTestAdmin extends HelperBase {
         }
     }
 
-    @Test
+
     public void fieldFormProduct() throws InterruptedException {
         String time = time();
         generalPage(time);
