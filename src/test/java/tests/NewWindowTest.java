@@ -15,6 +15,7 @@ public class NewWindowTest extends BaseTestAdmin {
 
     @Test
     public void openNewWindow() {
+
         WebDriverWait wait = new WebDriverWait(driver, 2/*seconds*/);
 
         click(By.xpath("//*/text()[normalize-space(.)='Countries']/parent::*"));

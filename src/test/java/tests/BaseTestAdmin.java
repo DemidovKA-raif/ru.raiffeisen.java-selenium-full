@@ -1,15 +1,11 @@
 package tests;
 
 import appmanager.HelperBase;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.logging.LogEntry;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
 
 import java.io.File;
 import java.time.Duration;
@@ -22,9 +18,14 @@ public class BaseTestAdmin extends HelperBase {
 
     @BeforeMethod(alwaysRun = true)
     public void setUp() throws Exception {
+
         driver = new ChromeDriver();
         baseUrl = "http://localhost/litecart/admin/login.php?redirect_url=%2Flitecart%2Fadmin%2F";
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(1));
+        driver.manage().logs().get("browser").forEach(System.out::println);
+//        for (LogEntry l : driver.manage().logs().get("performance").getAll()) { // не понял, для чего это и как это есть (взято из СДО)
+//            System.out.println(l);
+//        }
         js = (JavascriptExecutor) driver;
         driver.get(baseUrl);
         sendKeys("username", "admin");
