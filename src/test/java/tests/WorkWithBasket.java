@@ -2,9 +2,13 @@ package tests;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
+import java.util.List;
+
+import static org.openqa.selenium.support.ui.ExpectedConditions.stalenessOf;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
 public class WorkWithBasket extends BaseTestLitecart {
@@ -29,10 +33,14 @@ public class WorkWithBasket extends BaseTestLitecart {
             wait.until(visibilityOf(driver.findElement(By.name("quantity")))).click();
             wait.until(visibilityOf(driver.findElement(By.name("quantity")))).sendKeys(Keys.DOWN);
             String nameDuck = driver.findElement(By.xpath("//form[@name='cart_form']//strong")).getText();
+
             isElementPresent(By.xpath("//div[@id='order_confirmation-wrapper']//td[contains(text(),'" + nameDuck + "')]"));
             wait.until(visibilityOf(driver.findElement(By.name("update_cart_item")))).click();
             isElementNotPresent(By.xpath("//div[@id='order_confirmation-wrapper']//td[contains(text(),'" + nameDuck + "')]"));
-            Thread.sleep(2000); //стыдно за слип, но не придумал варианта иного, так как может быть одна утка с двумя позициями и исчезновение элемента не подойдет
+
+            WebElement webElement = driver.findElement(By.xpath("//table[@class='dataTable rounded-corners']"));
+            List<WebElement> webElements = webElement.findElements(By.xpath("//div[@id='order_confirmation-wrapper']/table/tbody/tr[2]"));
+            wait.until(stalenessOf(webElements.get(0)));
         }
     }
 
