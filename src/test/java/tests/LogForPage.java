@@ -27,10 +27,12 @@ public class LogForPage extends BaseTestAdmin {
         for (int i = 5; i < substring + 5; i++) {
             wait.until(visibilityOf(driver.findElement(By.xpath("//tr[" + i + "]/td[3]/a")))).click();
             String logEntries = String.valueOf(driver.manage().logs().get("browser").getAll());
-            Assert.assertFalse(text.contains(logEntries));
+
+           Assert.assertFalse(text.contains(logEntries));
             click(By.name("cancel"));
         }
     }
+
 
     public static String removeNumeric(String str) {
         return str.replaceAll("[^\\d.]", "");
