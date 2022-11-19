@@ -1,15 +1,16 @@
-package tests;
+package testsAdmin;
+
 
 import org.testng.annotations.Test;
 
 
 import java.io.FileNotFoundException;
 
-public class AddNewProductTest extends BaseTestAdmin {
+public class AddNewProductTest extends BaseTest {
 
     @Test
     public void newProductFieldForm() throws InterruptedException, FileNotFoundException {
-        fieldFormProduct();
+        app.helpers().fieldFormProduct();
     }
 
 

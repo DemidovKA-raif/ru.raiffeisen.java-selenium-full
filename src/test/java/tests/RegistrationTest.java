@@ -4,13 +4,12 @@ import org.testng.annotations.Test;
 
 import static org.testng.Assert.fail;
 
-public class RegistrationTest extends BaseTestLitecart {
+public class RegistrationTest extends TestBase {
 
 
     @Test
     public void registrationTest() throws InterruptedException {
-        fieldFormRegistrationTest();
-
+        app.registrationHelper().fieldFormRegistrationTest();
     }
 
 }

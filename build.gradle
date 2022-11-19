@@ -10,7 +10,7 @@ repositories {
 dependencies {
     testImplementation 'org.testng:testng:7.6.1'
     implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '4.0.0-beta-4'
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
-    implementation 'com.guicedee.services:javax.servlet-api:1.0.9.14'
+//    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.0'
+//    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.0'
+    implementation 'com.guicedee.services:javax.servlet-api:62'
 }

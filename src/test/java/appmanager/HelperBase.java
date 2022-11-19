@@ -8,8 +8,13 @@ import org.openqa.selenium.WebElement;
 import java.util.Date;
 
 public class HelperBase {
+
+
+    public HelperBase(WebDriver driver) {
+        this.driver = driver;
+    }
+
     protected WebDriver driver;
-    protected String baseUrl;
     protected StringBuffer verificationErrors = new StringBuffer();
     protected JavascriptExecutor js;
 
@@ -30,7 +35,7 @@ public class HelperBase {
     }
 
     public String time (){
-        Date moment = new Date(); // Задаем количество миллисекунд Unix-time с того-самого-момента
+        Date moment = new Date(); // Задаем количество миллисекунд Unix-time с того самого момента
        return String.valueOf(moment.getTime());
     }
 }
