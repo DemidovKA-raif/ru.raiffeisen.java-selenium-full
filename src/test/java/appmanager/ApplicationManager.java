@@ -1,6 +1,5 @@
 package appmanager;
 
-import cucumber.MyStepdefs;
 import io.netty.channel.kqueue.AcceptFilter;
 import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.By;
@@ -39,7 +38,7 @@ public class ApplicationManager {
         properties = new Properties();
     }
 
-
+    @BeforeAll
     public void init() throws IOException {
         String target = System.getProperty("target", "local");
         DesiredCapabilities capabilities = new DesiredCapabilities();
@@ -49,7 +48,6 @@ public class ApplicationManager {
         } else {
             driver = new FirefoxDriver();
         }
-//        driver = new ChromeDriver(capabilities);
         properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
         driver.get(properties.getProperty("web.BaseURL"));
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));

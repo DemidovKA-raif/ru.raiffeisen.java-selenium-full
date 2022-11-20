@@ -1,6 +1,7 @@
 package tests;
 
 import appmanager.ApplicationManager;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.BrowserType;
@@ -18,12 +19,11 @@ public class TestBase {
     protected final ApplicationManager app = new ApplicationManager(BrowserType.CHROME);
     Logger logger = LoggerFactory.getLogger(TestBase.class);
 
-    @BeforeAll
     @BeforeMethod
     public void setUp() throws Exception {
         app.init();
     }
-
+    
     @AfterMethod(alwaysRun = true)
     public void tearDown() throws Exception {
         app.stop();
