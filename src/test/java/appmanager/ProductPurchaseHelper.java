@@ -11,7 +11,7 @@ import java.util.List;
 import static org.openqa.selenium.support.ui.ExpectedConditions.stalenessOf;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
-public class ProductPurchaseHelper extends HelperBase{
+public class ProductPurchaseHelper extends HelperBase {
 
 
     public ProductPurchaseHelper(WebDriver driver) {

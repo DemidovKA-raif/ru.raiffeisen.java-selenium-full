@@ -3,7 +3,9 @@ package appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.logging.LoggingPreferences;
 import org.openqa.selenium.remote.BrowserType;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -14,6 +16,7 @@ import java.io.IOException;
 import java.time.Duration;
 import java.util.Objects;
 import java.util.Properties;
+import java.util.logging.Level;
 
 
 public class ApplicationManager {
@@ -34,13 +37,19 @@ public class ApplicationManager {
     }
 
     public void init() throws IOException {
+
+        LoggingPreferences prefs = new LoggingPreferences();
+        prefs.enable("browser", Level.ALL);
+        ChromeOptions options = new ChromeOptions();
+        options.setCapability(CapabilityType.LOGGING_PREFS, prefs);
+
         String target = System.getProperty("target", "local");
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability(CapabilityType.PAGE_LOAD_STRATEGY, "eager");
+//        DesiredCapabilities capabilities = new DesiredCapabilities();
+//        capabilities.setCapability(CapabilityType.PAGE_LOAD_STRATEGY, "eager");
         if (Objects.equals(browser, BrowserType.CHROME)) {
-            driver = new ChromeDriver(capabilities);
+            driver = new ChromeDriver(options);
         } else {
-            driver = new FirefoxDriver(capabilities);
+            driver = new FirefoxDriver(options);
         }
 
         properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));

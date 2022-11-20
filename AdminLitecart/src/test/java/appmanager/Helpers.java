@@ -1,6 +1,10 @@
 package appmanager;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.logging.LoggingPreferences;
+import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -11,6 +15,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Set;
+import java.util.logging.Level;
 
 public class Helpers extends HelperBase {
 
@@ -198,9 +203,12 @@ public class Helpers extends HelperBase {
 
         for (int i = 5; i < substring + 5; i++) {
             wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//tr[" + i + "]/td[3]/a")))).click();
-            String logEntries = String.valueOf(driver.manage().logs().get("browser").getAll());
+            int logEntries = (driver.manage().logs().get("browser").getAll().size());
+            if (logEntries > 0 ){
+                System.out.println("Please check browser logs! ");
+            } else System.out.println("It`s Okay! logs clear");
+            Assert.assertEquals(logEntries, 0);
 
-            Assert.assertFalse(text.contains(logEntries));
             click(By.name("cancel"));
         }
     }
@@ -218,14 +226,10 @@ public class Helpers extends HelperBase {
         wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//input[@value='1']")))).click();
         sendKeys("iso_code_2", "PF");
         windowSet(wait, "//td/a[1]");
-
         sendKeys("iso_code_3", "PFF");
-
         sendKeys("name", "Pflyandeya");
-
         sendKeys("tax_id_format", "Test");
         windowSet(wait, "//tr[6]/td/a/i");
-
         sendKeys("address_format",
                 "%company " +
                         "%firstname %lastname " +

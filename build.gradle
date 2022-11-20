@@ -8,9 +8,11 @@ repositories {
 }
 
 dependencies {
+    implementation 'junit:junit:4.13.2'
+    implementation 'org.junit.jupiter:junit-jupiter:5.7.0'
     testImplementation 'org.testng:testng:7.6.1'
     implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '4.0.0-beta-4'
-//    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.0'
-//    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.0'
     implementation 'com.guicedee.services:javax.servlet-api:62'
+    implementation 'io.cucumber:cucumber-java8:7.0.0'
+    implementation 'io.cucumber:cucumber-junit:7.0.0'
 }

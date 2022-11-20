@@ -1,6 +1,8 @@
 package appmanager;
 
+import cucumber.MyStepdefs;
 import io.netty.channel.kqueue.AcceptFilter;
+import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -22,6 +24,7 @@ public class ApplicationManager {
     private DucksHelper ducksHelper;
     private RegistrationHelper registrationHelper;
     private ProductPurchaseHelper productPurchaseHelper;
+//    private HomePage homePage;
 
     private final Properties properties;
     WebDriver driver;
@@ -55,6 +58,7 @@ public class ApplicationManager {
         productPurchaseHelper = new ProductPurchaseHelper(driver);
         registrationHelper = new RegistrationHelper(driver);
         ducksHelper = new DucksHelper(driver);
+//        homePage = new HomePage(driver);
     }
 
     public void stop() {
@@ -72,4 +76,9 @@ public class ApplicationManager {
     public DucksHelper ducksHelper() {
         return ducksHelper;
     }
+
+//    public HomePage homePage() {
+//        return homePage;
+//    }
+
 }

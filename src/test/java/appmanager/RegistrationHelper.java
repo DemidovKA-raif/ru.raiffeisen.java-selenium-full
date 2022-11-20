@@ -6,8 +6,8 @@ import org.openqa.selenium.WebElement;
 
 public class RegistrationHelper extends HelperBase {
 
-    public RegistrationHelper(WebDriver wd) {
-        super(wd);
+    public RegistrationHelper(WebDriver driver) {
+        super(driver);
     }
 
 
