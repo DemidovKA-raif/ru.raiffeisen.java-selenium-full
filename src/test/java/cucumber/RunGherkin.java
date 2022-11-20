@@ -6,7 +6,7 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(plugin = {"pretty"},
-        features = {"classpath:features/DucksInBasket.feature"},
+//        features = {"classpath:features/DucksInBasket.feature"},
         publish = true)
 public class RunGherkin {
 

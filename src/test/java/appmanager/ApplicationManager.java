@@ -75,8 +75,5 @@ public class ApplicationManager {
         return ducksHelper;
     }
 
-//    public HomePage homePage() {
-//        return homePage;
-//    }
 
 }

@@ -1,12 +1,16 @@
 package cucumber;
 
 import io.cucumber.java8.En;
+import org.junit.jupiter.api.BeforeAll;
 import tests.TestBase;
+
+import java.io.IOException;
 
 public class MyStepDefs extends TestBase implements En {
 
-    public MyStepDefs() {
-
+    public MyStepDefs() throws IOException {
+        Before(app::init);
+        After(app::stop);
         When("Add duck in basket in quantity {string}", (String arg0) -> {
             app.productPurchaseHelper().addProduct(Integer.parseInt(arg0));
         });

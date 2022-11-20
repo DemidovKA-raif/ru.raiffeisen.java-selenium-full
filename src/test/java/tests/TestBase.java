@@ -1,6 +1,7 @@
 package tests;
 
 import appmanager.ApplicationManager;
+import org.junit.Before;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.WebDriver;
@@ -23,7 +24,7 @@ public class TestBase {
     public void setUp() throws Exception {
         app.init();
     }
-    
+
     @AfterMethod(alwaysRun = true)
     public void tearDown() throws Exception {
         app.stop();
